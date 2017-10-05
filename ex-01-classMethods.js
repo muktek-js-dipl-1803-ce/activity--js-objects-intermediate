@@ -28,25 +28,12 @@ let someHtmlEl = {
  *   --->
 */
 
-someHtmlEl.addClass = function(val){
-  if(this.classList.indexOf(val) < 0) this.classList.push(val)
-}
 
 
 /*
  * Write the logic for the '.removeClass()' method for `someHtmlEl`
  *   --->
 */
-someHtmlEl.removeClass = function(val){
-  let newClassList = []
-  for(var i = 0; i < this.classList.length; i++){
-    if(this.classList[i] !== val){
-      newClassList.push(this.classList[i])
-    }
-  }
-
-  this.classList = newClassList
-}
 
 
 
