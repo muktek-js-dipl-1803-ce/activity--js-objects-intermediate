@@ -28,21 +28,69 @@ let someHtmlEl = {
  *   --->
 */
 
+someHtmlEl.addClass = function(strVal){
+  // (1) assume string value is not in array
+  var strValueInArray = false
 
+  // (2) iterate over classList array
+  for(var i = 0; i < this.classList.length ; i += 1){
+
+    // (3) check to see if element in array is equal to string value
+    if( this.classList[i] === strVal ){
+
+      // (4) change strValueInArray when element is equal
+      //      if this happens, then strValueInArray will
+      //      always be true (strVal was found in this.classList)
+      strValueInArray = true
+    }
+  }
+
+
+  // (5) if strVal argument was NOT found in classList
+  //      AFTER the complete iteration, then we can
+  //      safely push the strVal argument to the classList arra
+
+  if( strValueInArray === false) {
+    this.classList.push(strVal)
+  }
+
+}
 
 /*
  * Write the logic for the '.removeClass()' method for `someHtmlEl`
  *   --->
 */
 
+someHtmlEl.removeClass = function(strToRemove){
+  // --- we are going to REASSSIGN this.classList ---
 
+  // (1) create new empty array
+  var updatedClassListArray = []
+
+  // (2) iterate over this.classList
+  for(var i = 0; i < this.classList.length; i++ ){
+
+    // (3) if the strToRemove paramater is NOT equal to the
+    //     current element we are iterating over....
+
+    if(this.classList[i] !== strToRemove){
+      // ... then push the value to the new array
+      //     (the strToRemove value will never get pushed)
+      updatedClassListArray.push(this.classList[i])
+    }
+
+  }
+
+  // (4) reassign this.classList with the modified array
+  this.classList = updatedClassListArray
+}
 
 //*~*~*-*~*~*~*~*~ Evaluation *~*~*~*~*~*~*~*~*~*~*~
 
 // .addClass()
 // -----------
   // Checks that .addClass method is a function
-  console.assert (typeof someHtmlEl.addClass === 'function')
+console.assert (typeof someHtmlEl.addClass === 'function')
 
   // Checks that you can add two classes to .classList array
   someHtmlEl.addClass('disabled')
@@ -56,15 +104,17 @@ let someHtmlEl = {
   someHtmlEl.addClass('new')
   console.assert ( someHtmlEl.classList.length === 5 )
 
-
 // .removeClass()
 // -----------
   // Checks that .removeClass method is a function
-  console.assert (typeof someHtmlEl.removeClass === 'function')
+console.assert (typeof someHtmlEl.removeClass === 'function')
 
   // Checks that .removeClass method removes the string with the input value on the .classList array
   someHtmlEl.removeClass('new')
+  // => this.classList = [ "title", "featured",  "disabled", "hidden"]
   console.assert ( someHtmlEl.classList.length === 4 )
+  console.assert ( someHtmlEl.classList.indexOf('new') === -1 )
+
   someHtmlEl.removeClass('hidden')
   console.assert ( someHtmlEl.classList.length === 3 )
 

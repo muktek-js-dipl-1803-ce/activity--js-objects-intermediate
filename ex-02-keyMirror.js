@@ -23,6 +23,33 @@
 */
 
 
+function keyMirror(inputObj){
+
+  // (1) Create the empty the empty object that we will modify + return
+
+  var keyMirrorObj = {}
+
+  // (2) iterate over input object's properties
+  for( var propertyString in inputObj ){
+
+    // (3) uppercase the property name
+    var upperCasePropertyString = propertyString.toUpperCase()
+    // ALL OF THE MAGIC below
+
+    // (4) assign as Property Name AND Property Value the uppercased property string
+    keyMirrorObj[upperCasePropertyString] = upperCasePropertyString
+    console.log(keyMirrorObj)
+    console.log('------')
+  }
+
+  console.log(keyMirrorObj)
+
+  // (5) return the object
+  return keyMirrorObj
+  console.log('========')
+}
+
+
 
 //*~*~*-*~*~*~*~*~ Evaluation *~*~*~*~*~*~*~*~*~*~*~
 
